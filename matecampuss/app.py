@@ -1,16 +1,13 @@
-# CampusMate - Student Academic Planner (Flask, versi Vercel)
-# Catatan: data disimpan di browser (localStorage). Flask khusus menghitung logika.
 from datetime import date
 from flask import Flask, jsonify, request, render_template
 
-# static_folder hanya untuk jalan di laptop; di Vercel file di public/ dilayani otomatis
 app = Flask(__name__, static_folder="public/static", static_url_path="/static")
 
 
 def hitung_status(tugas, tanggal):
     """If-else: tentukan status tugas dari deadline dan status selesai."""
     sisa_hari = (date.fromisoformat(tugas["deadline"]) - date.fromisoformat(tanggal)).days  # integer
-    if tugas["selesai"]:                 # boolean
+    if tugas["selesai"]:                 
         return "Selesai"
     elif sisa_hari < 0:
         return "Terlambat"
@@ -28,8 +25,8 @@ def hitung_progres(daftar_tugas):
     for t in daftar_tugas:
         if t["selesai"]:
             jumlah_selesai += 1
-    persen = jumlah_selesai / len(daftar_tugas) * 100    # float
-    return int(persen)                                   # dibulatkan jadi integer
+    persen = jumlah_selesai / len(daftar_tugas) * 100    
+    return int(persen)                                   
 
 
 def total_waktu_belajar(daftar_sesi, tanggal):
@@ -52,7 +49,7 @@ def ringkasan():
     body = request.get_json()
     tanggal, hari_ini = body["tanggal"], body["hari_ini"]
     tugas = body["tugas"]
-    for t in tugas:                                      # looping: tambahkan status
+    for t in tugas:                                      
         t["status"] = hitung_status(t, tanggal)
     belum = [t for t in tugas if not t["selesai"]]
     return jsonify({
