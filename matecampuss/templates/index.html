@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusMate</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<aside class="sisi">
+  <h1>CampusMate 🎓</h1>
+  <nav id="menu">
+    <button data-menu="dashboard" class="aktif">Dashboard</button>
+    <button data-menu="jadwal">Jadwal Kuliah</button>
+    <button data-menu="tugas">Tracker Tugas</button>
+    <button data-menu="belajar">Study Planner</button>
+    <button data-menu="timer">Study Timer</button>
+  </nav>
+</aside>
+<main>
+  <section id="dashboard" class="panel tampil">
+    <h2>Dashboard</h2>
+    <p class="sub" id="subjudul"></p>
+    <div class="kartu-ringkas">
+      <div><b id="r-matkul">0</b>Jadwal kuliah</div>
+      <div><b id="r-belum">0</b>Tugas belum selesai</div>
+      <div><b id="r-progres">0%</b>Progres tugas</div>
+      <div><b id="r-waktu">0m</b>Waktu belajar</div>
+    </div>
+    <div class="dua">
+      <div class="kotak"><h3>Jadwal hari ini</h3><div id="d-jadwal"></div></div>
+      <div class="kotak"><h3>Deadline terdekat</h3><div id="d-deadline"></div></div>
+    </div>
+  </section>
+
+  <section id="jadwal" class="panel">
+    <h2>Jadwal Kuliah</h2>
+    <div class="pilih-hari" id="pilih-hari"></div>
+    <div class="kotak" id="list-jadwal"></div>
+    <form id="form-jadwal" class="form">
+      <select name="hari" id="hari-form"></select>
+      <input name="mulai" type="time" required>
+      <input name="selesai" type="time" required>
+      <input name="matkul" placeholder="Mata kuliah" required>
+      <input name="ruang" placeholder="Ruang kelas">
+      <button>Tambah jadwal</button>
+    </form>
+  </section>
+
+  <section id="tugas" class="panel">
+    <h2>Tracker Tugas</h2>
+    <div class="progres"><div id="bar"></div></div>
+    <p class="sub" id="teks-progres"></p>
+    <div class="kotak" id="list-tugas"></div>
+    <form id="form-tugas" class="form">
+      <input name="nama" placeholder="Nama tugas" required>
+      <input name="matkul" placeholder="Mata kuliah" required>
+      <input name="deadline" type="date" required>
+      <select name="prioritas"><option>Rendah</option><option selected>Sedang</option><option>Tinggi</option></select>
+      <button>Tambah tugas</button>
+    </form>
+  </section>
+
+  <section id="belajar" class="panel">
+    <h2>Study Planner</h2>
+    <p class="sub" id="teks-belajar"></p>
+    <div class="kotak" id="list-belajar"></div>
+    <form id="form-belajar" class="form">
+      <input name="mulai" type="time" required>
+      <input name="selesai" type="time" required>
+      <input name="matkul" placeholder="Mata kuliah" required>
+      <input name="materi" placeholder="Materi" required>
+      <button>Tambah rencana</button>
+    </form>
+  </section>
+
+  <section id="timer" class="panel">
+    <h2>Study Timer</h2>
+    <div class="timer-box">
+      <p id="mode-timer">Sesi belajar</p>
+      <div id="layar">25:00</div>
+      <div class="tombol">
+        <button id="btn-mulai">Mulai</button>
+        <button id="btn-jeda" class="abu">Jeda</button>
+        <button id="btn-reset" class="abu">Reset</button>
+      </div>
+      <div class="form">
+        <label>Belajar (menit) <input id="in-belajar" type="number" min="1" value="25"></label>
+        <label>Istirahat (menit) <input id="in-istirahat" type="number" min="1" value="5"></label>
+      </div>
+    </div>
+    <div class="kotak"><h3 id="total-hari">Total belajar hari ini: 0 menit</h3><div id="list-sesi"></div></div>
+  </section>
+</main>
+<script src="/static/script.js"></script>
+</body>
+</html>
